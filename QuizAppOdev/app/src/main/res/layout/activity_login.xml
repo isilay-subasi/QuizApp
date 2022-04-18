@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activities.LoginActivity">
+
+
+    <ImageView
+        android:id="@+id/login_screen_logo"
+        android:layout_gravity="center"
+        android:layout_width="@dimen/activity_small_size"
+        android:layout_height="@dimen/activity_small_size"
+        android:layout_marginTop="@dimen/activity_small_size"
+        android:background="@drawable/logo">
+
+    </ImageView>
+
+
+    <TextView
+        android:textStyle="bold"
+        android:textSize="@dimen/text_large_size"
+        android:text="@string/login_text"
+        android:layout_marginTop="@dimen/activity_xsmall_size"
+        android:layout_marginStart="@dimen/activity_xsmall_size"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:ignore="SpUsage">
+
+    </TextView>
+
+    <EditText
+        android:id="@+id/edtName"
+        android:layout_width="@dimen/activity_large_size"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/activity_xsmall_size"
+        android:hint="@string/login_hint"
+        android:inputType="text">
+
+    </EditText>
+
+    <Button
+        android:id="@+id/btnIleri"
+        android:layout_width="@dimen/activity_large_size"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/activity_xsmall_size"
+        android:text="@string/login_button_text">
+
+    </Button>
+
+
+</LinearLayout>

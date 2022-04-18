@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">QuizApp</string>
+    <string name="login_text">Oyuncu Adı:</string>
+    <string name="login_hint">Lütfen Adınızı Giriniz</string>
+    <string name="login_button_text">İleri</string>
+    <string name="category_text">Hoşgeldin;</string>
+    <string name="category_card_one">ANDROID</string>
+    <string name="category_card_two">JAVA</string>
+    <string name="category_card_cikis">ÇIKIŞ</string>
+
+</resources>
