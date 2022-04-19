@@ -4,7 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -25,8 +29,9 @@ public class GameActivity extends AppCompatActivity {
     QuestionAndroidLibrary questionAndroidLibrary;
     String answer;
     int questionLength;
-    int score=100;
+    int score=0;
     int number=0;
+    boolean isCorrect=false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +48,7 @@ public class GameActivity extends AppCompatActivity {
             "ANDROID" değerine eşit ise Android kategorisindeki soruların ve cevapların gösterilmesi gerekir.
          */
         if (gameBarCategoryName.equals(Category.ANDROID.name())){
-                updateQuestionAndroid(number);
+                updateQuestionAndroid(number,score);
 
 
         }
@@ -56,14 +61,21 @@ public class GameActivity extends AppCompatActivity {
         }
 
         btnOptionOne.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("ResourceAsColor")
             @Override
             public void onClick(View view) {
                 if (btnOptionOne.getText() == answer){
-                    Toast.makeText(getApplicationContext(), "doğru", Toast.LENGTH_SHORT).show();
+
                     number++;
-                    updateQuestionAndroid(number);
+                    score=score+10;
+                    isCorrect=true;
+                    btnOptionOne.setBackgroundColor(getResources().getColor(R.color.light_green));
+                    questionChangeTimerStart(number,score,btnOptionOne);
                 }else{
-                    Toast.makeText(getApplicationContext(), "yanlış", Toast.LENGTH_SHORT).show();
+                    btnOptionOne.setBackgroundColor(getResources().getColor(R.color.red));
+                    isCorrect=false;
+                    questionChangeTimerStart(number,score,btnOptionOne);
+
                 }
             }
         });
@@ -74,7 +86,8 @@ public class GameActivity extends AppCompatActivity {
                 if (btnOptionTwo.getText() == answer){
                     Toast.makeText(getApplicationContext(), "doğru", Toast.LENGTH_SHORT).show();
                     number++;
-                    updateQuestionAndroid(number);
+                    score=score+10;
+                    updateQuestionAndroid(number,score);
                 }else{
                     Toast.makeText(getApplicationContext(), "yanlış", Toast.LENGTH_SHORT).show();
                 }
@@ -86,7 +99,8 @@ public class GameActivity extends AppCompatActivity {
                 if (btnOptionThree.getText() == answer){
                     Toast.makeText(getApplicationContext(), "doğru", Toast.LENGTH_SHORT).show();
                     number++;
-                    updateQuestionAndroid(number);
+                    score=score+10;
+                    updateQuestionAndroid(number,score);
                 }else{
                     Toast.makeText(getApplicationContext(), "yanlış", Toast.LENGTH_SHORT).show();
                 }
@@ -98,7 +112,8 @@ public class GameActivity extends AppCompatActivity {
                 if (bntOptionFour.getText() == answer){
                     Toast.makeText(getApplicationContext(), "doğru", Toast.LENGTH_SHORT).show();
                     number++;
-                    updateQuestionAndroid(number);
+                    score=score+10;
+                    updateQuestionAndroid(number,score);
                 }else{
                     Toast.makeText(getApplicationContext(), "yanlış", Toast.LENGTH_SHORT).show();
                 }
@@ -130,12 +145,10 @@ public class GameActivity extends AppCompatActivity {
     }
 
     @SuppressLint("SetTextI18n")
-    public void updateQuestionAndroid(int number){
+    public void updateQuestionAndroid(int number, int score){
 
         tvQuestionNumber.setText(number + "/" + questionLength);
         tvQuestionScore.setText(""+score);
-
-
         tvQuestion.setText(questionAndroidLibrary.getQuestion(number));
         btnOptionOne.setText(questionAndroidLibrary.getChoiceOne(number));
         btnOptionTwo.setText(questionAndroidLibrary.getChoiceTwo(number));
@@ -152,5 +165,52 @@ public class GameActivity extends AppCompatActivity {
         ANDROID,
         JAVA,
     }
+
+    public void questionChangeTimerStart(int number,int score,Button choseBtn){
+        new CountDownTimer(Constans.QUESTION_CHANGE_TIMER_MILIS,Constans.QUESTION_CHANGE_INVERTAL_MILIS) {
+            @Override
+            public void onTick(long l) {
+
+            }
+
+            @Override
+            public void onFinish() {
+
+
+                choseBtn.setBackgroundColor(getResources().getColor(R.color.light_pink_color));
+
+                if (isCorrect){
+                    AlertDialog.Builder builder = new AlertDialog.Builder(GameActivity.this);
+                    builder.setTitle("Cevap Doğru");
+                    builder.setNegativeButton("Çıkış",
+                            new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    finish();
+                                }
+                            }
+
+                    );
+                    builder.setPositiveButton("Devam", new
+                            DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int i) {
+                                    updateQuestionAndroid(number,score);
+
+                                }
+                            });
+
+                    builder.show();
+                }
+                else{
+                    Intent intent=new Intent(getApplicationContext(),GameOverActivity.class);
+                    startActivity(intent);
+                }
+            }
+        }.start();
+
+
+    }
+
 
 }
