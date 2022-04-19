@@ -16,6 +16,7 @@ import com.isilsubasi.quizapp.util.PrefUtil;
 public class CategoryActivity extends AppCompatActivity{
 
     TextView tvCategory;
+    TextView tvAndroid;
     CardView cardAndroid;
     CardView cardJava;
     CardView cardCikis;
@@ -30,6 +31,7 @@ public class CategoryActivity extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(getApplicationContext(),GameActivity.class);
+                intent.putExtra(Constans.GAME_BAR_PARAMETRESI,tvAndroid.getText().toString());
                 startActivity(intent);
             }
         });
@@ -80,6 +82,7 @@ public class CategoryActivity extends AppCompatActivity{
 
 public void initThis(){
     tvCategory=findViewById(R.id.tvCategory);
+    tvAndroid=findViewById(R.id.tv_android);
     cardAndroid=findViewById(R.id.cardAndroid);
     cardJava=findViewById(R.id.cardJava);
     cardCikis=findViewById(R.id.cardCikis);

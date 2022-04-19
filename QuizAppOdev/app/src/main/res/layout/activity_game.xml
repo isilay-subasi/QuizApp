@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#4DB6AC"
     android:orientation="vertical"
-    android:background="#272343"
     tools:context=".activities.GameActivity">
 
     <androidx.cardview.widget.CardView
@@ -20,7 +20,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="sans-serif-thin"
-            android:text="@string/game_text_bar"
             android:textColor="@color/white"
             android:textSize="@dimen/text_xlarge_size"
             android:textStyle="bold">
@@ -30,9 +29,9 @@
     </androidx.cardview.widget.CardView>
 
     <LinearLayout
-        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
@@ -89,19 +88,19 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/game_text_height"
-        android:paddingLeft="@dimen/activity_xsmall_size"
-        android:paddingRight="@dimen/activity_xsmall_size"
-        android:layout_marginBottom="@dimen/activity_xsmall_size"
         android:layout_marginTop="@dimen/activity_xsmall_size"
-        android:gravity="center">
+        android:layout_marginBottom="@dimen/activity_xsmall_size"
+        android:gravity="center"
+        android:paddingLeft="@dimen/activity_xsmall_size"
+        android:paddingRight="@dimen/activity_xsmall_size">
 
 
         <TextView
             android:id="@+id/tv_question"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:textColor="@color/white"
             android:text="@string/question_one"
+            android:textColor="@color/white"
             android:textSize="@dimen/text_large_size">
 
         </TextView>
@@ -113,9 +112,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:orientation="vertical"
         android:paddingLeft="@dimen/activity_xsmall_size"
-        android:paddingRight="@dimen/activity_xsmall_size"
-        android:orientation="vertical">
+        android:paddingRight="@dimen/activity_xsmall_size">
 
 
         <Button
@@ -148,17 +147,16 @@
         </Button>
 
 
-
-
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/margin_size"
+        android:orientation="vertical"
         android:paddingLeft="@dimen/activity_xsmall_size"
-        android:paddingRight="@dimen/activity_xsmall_size"
-        android:orientation="vertical">
+        android:paddingRight="@dimen/activity_xsmall_size">
 
 
         <Button
@@ -191,14 +189,7 @@
         </Button>
 
 
-
-
     </LinearLayout>
-
-
-
-
-
 
 
 </LinearLayout>
