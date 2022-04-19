@@ -7,5 +7,15 @@
     <string name="category_card_one">ANDROID</string>
     <string name="category_card_two">JAVA</string>
     <string name="category_card_cikis">ÇIKIŞ</string>
+    <string name="game_text_bar">Android</string>
+    <string name="game_text_default_number">2/10</string>
+    <string name="game_text_default_puan">200</string>
+    <string name="game_text_soru">SORU : </string>
+    <string name="game_text_puan">PUAN : </string>
+    <string name="question_one">Hangisi bir mobil işletim sistemi değildir? </string>
+    <string name="answer_one">birinci cevap</string>
+    <string name="answer_two">ikinci cevap</string>
+    <string name="answer_three">üçüncü cevap</string>
+    <string name="answer_four">dördüncü cevap</string>
 
 </resources>
