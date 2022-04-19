@@ -7,6 +7,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import com.isilsubasi.quizapp.R;
@@ -17,6 +18,7 @@ public class CategoryActivity extends AppCompatActivity{
 
     TextView tvCategory;
     TextView tvAndroid;
+    TextView tvJava;
     CardView cardAndroid;
     CardView cardJava;
     CardView cardCikis;
@@ -32,6 +34,7 @@ public class CategoryActivity extends AppCompatActivity{
             public void onClick(View view) {
                 Intent intent=new Intent(getApplicationContext(),GameActivity.class);
                 intent.putExtra(Constans.GAME_BAR_PARAMETRESI,tvAndroid.getText().toString());
+                intent.putExtra(Constans.GAME_BAR_COLOR,cardAndroid.getCardBackgroundColor().getDefaultColor());
                 startActivity(intent);
             }
         });
@@ -40,7 +43,10 @@ public class CategoryActivity extends AppCompatActivity{
         cardJava.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent=new Intent(getApplicationContext(),GameActivity.class);
+                intent.putExtra(Constans.GAME_BAR_PARAMETRESI,tvJava.getText().toString());
+                intent.putExtra(Constans.GAME_BAR_COLOR,cardJava.getCardBackgroundColor().getDefaultColor());
+                startActivity(intent);
             }
         });
 
@@ -83,6 +89,7 @@ public class CategoryActivity extends AppCompatActivity{
 public void initThis(){
     tvCategory=findViewById(R.id.tvCategory);
     tvAndroid=findViewById(R.id.tv_android);
+    tvJava=findViewById(R.id.tv_java);
     cardAndroid=findViewById(R.id.cardAndroid);
     cardJava=findViewById(R.id.cardJava);
     cardCikis=findViewById(R.id.cardCikis);

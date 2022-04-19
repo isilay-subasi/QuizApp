@@ -6,5 +6,6 @@ public class Constans {
     public static final long SPLASH_SCREEN_TIMER_MILIS=3000;
     public static final long SPLASH_SCREEN_INVERTAL_MILIS=1000;
     public static final String GAME_BAR_PARAMETRESI="GAME_BAR_PARAMETRESI";
+    public static final String  GAME_BAR_COLOR="GAME_BAR_COLOR";
 
 }
