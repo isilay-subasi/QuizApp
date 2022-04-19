@@ -13,42 +13,44 @@ import com.isilsubasi.quizapp.util.Constans;
 //Uygulama başladığında ekranda gözüken ilk aktivitedir.
 public class MainActivity extends AppCompatActivity {
 
+    //Uygulama çalışırken ilk girilen metotdur.
+    //Layout olarak activity_main.xml set edilmiştir.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        SplashScreenTimer splashScreenTimer=new SplashScreenTimer(Constans.SPLASH_SCREEN_TIMER_MILIS,Constans.SPLASH_SCREEN_INVERTAL_MILIS);
-        splashScreenTimer.start();
+        splashScreenTimerStart();
 
 
 
     }
 
     /*
-    Aşağıdaki class CountDownTimer'dan kalıtım alır.
-    Ve nesne oluşturulduğu yerde nesnenin içerisine girilen parameteye bağlı olarak zamanlayıcı oluşturarak,
-    süre bitince LoginActivity.class açar.
+    Uygulama açıldıktan belli bir süre sonra LoginActivity ekranına geçiş yapmasını sağlayan zamanlayıcı.
+    Bu süreyi Constanslardan vererek zamanı değiştirmek istediğimizde tek bir yerden değiştirmeyi sağlayabiliriz.
+    (Projede 3 saniye olarak belirledik.)
      */
 
-    class SplashScreenTimer extends CountDownTimer{
+     public void splashScreenTimerStart(){
 
-        public SplashScreenTimer(long millisInFuture, long countDownInterval) {
-            super(millisInFuture, countDownInterval);
-        }
-        //Geri sayım süresince yapılacak değişiklikler
-        @Override
-        public void onTick(long l) {
+        new CountDownTimer(Constans.SPLASH_SCREEN_TIMER_MILIS,Constans.SPLASH_SCREEN_INVERTAL_MILIS) {
+            @Override
+            public void onTick(long l) {
 
-        }
-        ///süre bittiğinde yapılacaklar
-        @Override
-        public void onFinish() {
-            Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-            startActivity(intent);
-            finish();
-        }
-    }
+            }
+
+            @Override
+            public void onFinish() {
+                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        }.start();
+
+     }
+
+
 
 
 
