@@ -33,7 +33,7 @@
 
     <TextView
         android:textColor="@color/white"
-        android:id="@+id/tvCategory"
+        android:id="@+id/txtUserName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/activity_xsmall_size"
@@ -122,7 +122,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:fontFamily="sans-serif-thin"
-                android:text="@string/category_card_cikis"
+                android:text="@string/category_card_exit"
                 android:textColor="#E6E0E0"
                 android:textSize="@dimen/text_large_size"
                 android:textStyle="bold">

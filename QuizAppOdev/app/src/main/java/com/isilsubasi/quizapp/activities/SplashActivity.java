@@ -7,23 +7,23 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 
 import com.isilsubasi.quizapp.R;
-import com.isilsubasi.quizapp.activities.LoginActivity;
+import com.isilsubasi.quizapp.model.QuestionModel;
+import com.isilsubasi.quizapp.util.ActivityUtils;
 import com.isilsubasi.quizapp.util.Constans;
 
+import java.util.ArrayList;
+
 //Uygulama başladığında ekranda gözüken ilk aktivitedir.
-public class MainActivity extends AppCompatActivity {
+public class SplashActivity extends AppCompatActivity {
 
     //Uygulama çalışırken ilk girilen metotdur.
     //Layout olarak activity_main.xml set edilmiştir.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_splash);
 
-        splashScreenTimerStart();
-
-
-
+        splashIt();
     }
 
     /*
@@ -32,23 +32,18 @@ public class MainActivity extends AppCompatActivity {
     (Projede 3 saniye olarak belirledik.)
      */
 
-     public void splashScreenTimerStart(){
-
+     private void splashIt(){
         new CountDownTimer(Constans.SPLASH_SCREEN_TIMER_MILIS,Constans.SPLASH_SCREEN_INVERTAL_MILIS) {
             @Override
-            public void onTick(long l) {
-
-            }
+            public void onTick(long l) { }
 
             @Override
             public void onFinish() {
-                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-                startActivity(intent);
-                finish();
+                ActivityUtils.openScreen(SplashActivity.this,LoginActivity.class);
             }
         }.start();
-
      }
+
 
 
 

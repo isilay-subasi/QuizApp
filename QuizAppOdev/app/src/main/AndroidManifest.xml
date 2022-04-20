@@ -14,9 +14,6 @@
             android:name=".activities.GameOverActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.GameActivity"
-            android:exported="false" />
-        <activity
             android:name=".activities.CategoryActivity"
             android:exported="false" />
         <activity
@@ -24,7 +21,7 @@
             android:exported="false"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".activities.MainActivity"
+            android:name=".activities.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

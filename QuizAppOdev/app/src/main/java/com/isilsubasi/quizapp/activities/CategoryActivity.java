@@ -7,96 +7,67 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import com.isilsubasi.quizapp.R;
+import com.isilsubasi.quizapp.util.ActivityUtils;
+import com.isilsubasi.quizapp.util.AlertUtils;
 import com.isilsubasi.quizapp.util.Constans;
 import com.isilsubasi.quizapp.util.PrefUtil;
 
 public class CategoryActivity extends AppCompatActivity{
 
-    TextView tvCategory;
-    TextView tvAndroid;
-    TextView tvJava;
-    CardView cardAndroid;
-    CardView cardJava;
-    CardView cardCikis;
+    TextView txtUserName,txtAndroid,txtJava;
+    CardView cardAndroid,cardJava,cardExit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category);
-        initThis();
-        tvCategory.setText(PrefUtil.getStringPref(getApplicationContext(), Constans.PREF_OYUNCU_ADI_PARAMETRESİ));
-        cardAndroid.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent=new Intent(getApplicationContext(),GameActivity.class);
-                intent.putExtra(Constans.GAME_BAR_PARAMETRESI,tvAndroid.getText().toString());
-                intent.putExtra(Constans.GAME_BAR_COLOR,cardAndroid.getCardBackgroundColor().getDefaultColor());
-                startActivity(intent);
-            }
-        });
-
-
-        cardJava.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent=new Intent(getApplicationContext(),GameActivity.class);
-                intent.putExtra(Constans.GAME_BAR_PARAMETRESI,tvJava.getText().toString());
-                intent.putExtra(Constans.GAME_BAR_COLOR,cardJava.getCardBackgroundColor().getDefaultColor());
-                startActivity(intent);
-            }
-        });
-
-
-
-        cardCikis.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(CategoryActivity.this);
-                builder.setTitle("Çıkış");
-                builder.setMessage("Uygulamadan Çıkılsın Mı ?");
-                builder.setNegativeButton("Hayır",
-                        new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                dialogInterface.dismiss();
-                            }
-                        }
-
-                );
-                builder.setPositiveButton("Evet", new
-                        DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int i) {
-                                finish();
-                            }
-                        });
-
-                builder.show();
-
-
-            }
-        });
-
-
+        initUI();
 
     }
 
 
-public void initThis(){
-    tvCategory=findViewById(R.id.tvCategory);
-    tvAndroid=findViewById(R.id.tv_android);
-    tvJava=findViewById(R.id.tv_java);
+private void initUI(){
+    txtUserName =findViewById(R.id.txtUserName);
+    txtAndroid =findViewById(R.id.tv_android);
+    txtJava =findViewById(R.id.tv_java);
     cardAndroid=findViewById(R.id.cardAndroid);
     cardJava=findViewById(R.id.cardJava);
-    cardCikis=findViewById(R.id.cardCikis);
+    cardExit =findViewById(R.id.cardCikis);
+    txtUserName.setText(PrefUtil.getStringPref(getApplicationContext(), Constans.PREF_OYUNCU_ADI_PARAMETRESİ));
+    setClickListeners();
 
 }
 
 
+private void setClickListeners(){
 
+    cardAndroid.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            ActivityUtils.openGameActivity(CategoryActivity.this,GameActivity.class,txtAndroid,cardAndroid);
+        }
+    });
+
+
+    cardJava.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            ActivityUtils.openGameActivity(CategoryActivity.this,GameActivity.class,txtJava,cardJava);
+        }
+    });
+
+
+
+    cardExit.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            AlertUtils.showExitUtil(CategoryActivity.this);
+        }
+    });
+
+}
 
 }

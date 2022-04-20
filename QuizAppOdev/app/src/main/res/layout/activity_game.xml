@@ -40,7 +40,7 @@
             android:layout_marginStart="@dimen/activity_xsmall_size"
             android:fontFamily="sans-serif-thin"
             android:paddingTop="@dimen/activity_xxsmall_size"
-            android:text="@string/game_text_soru"
+            android:text="@string/game_text_question"
             android:textColor="@color/yellow"
             android:textSize="@dimen/text_medium_size"
             android:textStyle="bold">
@@ -65,7 +65,7 @@
             android:layout_marginStart="@dimen/activity_xsmall_size"
             android:fontFamily="sans-serif-thin"
             android:paddingTop="@dimen/activity_xxsmall_size"
-            android:text="@string/game_text_puan"
+            android:text="@string/game_text_score"
             android:textColor="@color/yellow"
             android:textSize="@dimen/text_medium_size"
             android:textStyle="bold">
@@ -77,7 +77,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-thin"
-            android:text="@string/game_text_default_puan"
+            android:text="@string/game_text_default_score"
             android:textColor="@color/white"
             android:textSize="@dimen/text_medium_size"
             android:textStyle="bold">
