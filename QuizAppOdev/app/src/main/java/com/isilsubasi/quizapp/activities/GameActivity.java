@@ -1,6 +1,9 @@
 package com.isilsubasi.quizapp.activities;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
@@ -23,7 +26,7 @@ public class GameActivity extends AppCompatActivity {
     Button btnAnswer1, btnAnswer2, btnAnswer3, btnAnswer4;
     CardView cardGameBar;
     String gameBarCategoryName , answerString;
-    int counter=0,score=100 , questionLength;
+    int counter=0,score=0 , questionLength;
 
 
     @Override
@@ -87,6 +90,9 @@ public class GameActivity extends AppCompatActivity {
     }
 
 
+
+
+
     private void setClickListeners(){
 
         btnAnswer1.setOnClickListener(new View.OnClickListener() {
@@ -134,8 +140,10 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private void correctAnswer(Button btnAnswer){
+        counter++;
+        score=score+10;
         GameUtils.buttonPaint(GameActivity.this,btnAnswer,R.color.light_green);
-        dialogOpeningTimer();
+        dialogOpeningTimer(btnAnswer);
 
     }
 
@@ -146,22 +154,48 @@ public class GameActivity extends AppCompatActivity {
 
 
 
-
-
-
- private void dialogOpeningTimer(){
+ private void dialogOpeningTimer(Button btnAnswer){
      new CountDownTimer(Constans.DIALOG_OPENING_TIMER,Constans.INVERTAL_MILIS) {
          @Override
          public void onTick(long l) { }
 
          @Override
          public void onFinish() {
-             AlertUtils.showContinueUtil(GameActivity.this);
+             showContinueDialog(btnAnswer);
          }
      }.start();
 
 
+     ;
+
  }
+
+    public  void showContinueDialog(Button btnAnswer){
+        AlertDialog.Builder builder = new AlertDialog.Builder(GameActivity.this);
+        builder.setTitle(getString(R.string.alert_title_continue));
+        builder.setNegativeButton(getString(R.string.alert_cikis_button),
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        finish();
+                    }
+                }
+        );
+        builder.setPositiveButton(getString(R.string.alert_devam_button), new
+                DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int i) {
+                        dialog.dismiss();
+                        GameUtils.buttonDefaultPaint(GameActivity.this,btnAnswer,R.color.light_pink_color);
+                        updateAndroidQuestions();
+
+                    }
+                });
+        builder.show();
+
+
+    }
+
 
 
 

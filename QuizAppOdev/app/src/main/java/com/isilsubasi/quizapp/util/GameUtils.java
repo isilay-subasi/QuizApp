@@ -232,6 +232,9 @@ public class GameUtils {
 
     }
 
+    public static void buttonDefaultPaint(Activity activity, Button button , int color){
+        button.setBackgroundColor(activity.getResources().getColor(color));
+    }
 
 
 
