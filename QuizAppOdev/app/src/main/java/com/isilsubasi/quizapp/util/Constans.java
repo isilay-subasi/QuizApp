@@ -11,5 +11,8 @@ public class Constans {
 
     public static final String GAME_BAR_PARAMETRESI="GAME_BAR_PARAMETRESI";
     public static final String  GAME_BAR_COLOR="GAME_BAR_COLOR";
+    public static final String ANDROID="ANDROID";
+
+
 
 }

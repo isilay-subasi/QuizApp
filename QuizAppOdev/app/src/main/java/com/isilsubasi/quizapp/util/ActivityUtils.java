@@ -6,7 +6,6 @@ import android.widget.TextView;
 
 import androidx.cardview.widget.CardView;
 
-import com.isilsubasi.quizapp.activities.GameActivity;
 
 public class ActivityUtils {
 
@@ -19,7 +18,7 @@ public class ActivityUtils {
     }
 
     public static void openGameActivity(Activity activity, Class<?> cls, TextView txtView , CardView cardView){
-        Intent intent=new Intent(activity, GameActivity.class);
+        Intent intent=new Intent(activity,cls);
         intent.putExtra(Constans.GAME_BAR_PARAMETRESI, txtView.getText().toString());
         intent.putExtra(Constans.GAME_BAR_COLOR,cardView.getCardBackgroundColor().getDefaultColor());
         activity.startActivity(intent);

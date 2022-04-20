@@ -14,6 +14,9 @@
             android:name=".activities.GameOverActivity"
             android:exported="false" />
         <activity
+            android:name=".activities.GameActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.CategoryActivity"
             android:exported="false" />
         <activity
