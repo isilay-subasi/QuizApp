@@ -32,6 +32,30 @@ public class AlertUtils {
                 });
         builder.show();
     }
+
+
+    public static void showContinueUtil(Activity activity){
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+        builder.setTitle(activity.getString(R.string.alert_title_continue));
+        builder.setNegativeButton(activity.getString(R.string.alert_cikis_button),
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        activity.finish();
+                    }
+                }
+        );
+        builder.setPositiveButton(activity.getString(R.string.alert_devam_button), new
+                DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int i) {
+
+                    }
+                });
+        builder.show();
+
+
+    }
 }
 
 

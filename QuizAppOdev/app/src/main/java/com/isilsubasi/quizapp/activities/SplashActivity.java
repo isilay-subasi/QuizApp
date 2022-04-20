@@ -2,16 +2,12 @@ package com.isilsubasi.quizapp.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 
 import com.isilsubasi.quizapp.R;
-import com.isilsubasi.quizapp.model.QuestionModel;
 import com.isilsubasi.quizapp.util.ActivityUtils;
 import com.isilsubasi.quizapp.util.Constans;
-
-import java.util.ArrayList;
 
 //Uygulama başladığında ekranda gözüken ilk aktivitedir.
 public class SplashActivity extends AppCompatActivity {
@@ -33,7 +29,7 @@ public class SplashActivity extends AppCompatActivity {
      */
 
      private void splashIt(){
-        new CountDownTimer(Constans.SPLASH_SCREEN_TIMER_MILIS,Constans.SPLASH_SCREEN_INVERTAL_MILIS) {
+        new CountDownTimer(Constans.SPLASH_SCREEN_TIMER_MILIS,Constans.INVERTAL_MILIS) {
             @Override
             public void onTick(long l) { }
 

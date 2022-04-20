@@ -19,9 +19,12 @@
     <string name="answer_four">dördüncü cevap</string>
     <string name="toast_not_empty">Lütfen Boş Bırakmayınız..</string>
     <string name="alert_title_exit">Çıkış</string>
+    <string name="alert_title_continue">Cevap Doğru</string>
     <string name="alert_message_exit">Uygulamadan Çıkılsın Mı ?</string>
     <string name="alert_negative_button">Hayır</string>
     <string name="alert_positive_button">Evet</string>
+    <string name="alert_devam_button">Devam</string>
+    <string name="alert_cikis_button">Çıkış</string>
 
 
 </resources>

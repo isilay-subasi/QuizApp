@@ -2,6 +2,7 @@ package com.isilsubasi.quizapp.activities;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -10,6 +11,7 @@ import androidx.cardview.widget.CardView;
 import com.isilsubasi.quizapp.R;
 import com.isilsubasi.quizapp.model.QuestionModel;
 import com.isilsubasi.quizapp.util.ActivityUtils;
+import com.isilsubasi.quizapp.util.AlertUtils;
 import com.isilsubasi.quizapp.util.Constans;
 import com.isilsubasi.quizapp.util.GameUtils;
 
@@ -22,7 +24,6 @@ public class GameActivity extends AppCompatActivity {
     CardView cardGameBar;
     String gameBarCategoryName , answerString;
     int counter=0,score=100 , questionLength;
-    ArrayList<String> buttonList;
 
 
     @Override
@@ -124,17 +125,43 @@ public class GameActivity extends AppCompatActivity {
     private void checkAnswer(Button btnAnswer){
 
         if (btnAnswer.getText() == answerString){
-            GameUtils.buttonPaint(GameActivity.this,btnAnswer,R.color.light_green);
-            //1 saniyelik timer
+            correctAnswer(btnAnswer);
         }else{
-            GameUtils.buttonPaint(GameActivity.this,btnAnswer,R.color.red);
-            ActivityUtils.openGameOverActivity(GameActivity.this,GameOverActivity.class);
+            falseAnswer(btnAnswer);
         }
 
 
     }
 
+    private void correctAnswer(Button btnAnswer){
+        GameUtils.buttonPaint(GameActivity.this,btnAnswer,R.color.light_green);
+        dialogOpeningTimer();
 
+    }
+
+    private void falseAnswer(Button btnAnswer){
+        GameUtils.buttonPaint(GameActivity.this,btnAnswer,R.color.red);
+        ActivityUtils.openGameOverActivity(GameActivity.this,GameOverActivity.class);
+    }
+
+
+
+
+
+
+ private void dialogOpeningTimer(){
+     new CountDownTimer(Constans.DIALOG_OPENING_TIMER,Constans.INVERTAL_MILIS) {
+         @Override
+         public void onTick(long l) { }
+
+         @Override
+         public void onFinish() {
+             AlertUtils.showContinueUtil(GameActivity.this);
+         }
+     }.start();
+
+
+ }
 
 
 
