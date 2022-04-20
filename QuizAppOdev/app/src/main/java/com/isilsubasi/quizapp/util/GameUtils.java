@@ -1,10 +1,12 @@
 package com.isilsubasi.quizapp.util;
 
 import android.app.Activity;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.cardview.widget.CardView;
 
+import com.isilsubasi.quizapp.R;
 import com.isilsubasi.quizapp.model.QuestionModel;
 
 import java.util.ArrayList;
@@ -20,7 +22,7 @@ public class GameUtils {
                 "cevap B",
                 "cevap C",
                 "cevap D",
-                1
+                "cevap B"
 
 
         ));
@@ -30,7 +32,7 @@ public class GameUtils {
                 "cevap B",
                 "cevap C",
                 "cevap D",
-                1
+                "cevap C"
 
 
         ));
@@ -40,7 +42,7 @@ public class GameUtils {
                 "cevap B",
                 "cevap C",
                 "cevap D",
-                1
+                "cevap D"
 
 
         ));
@@ -50,7 +52,7 @@ public class GameUtils {
                 "cevap B",
                 "cevap C",
                 "cevap D",
-                1
+                "cevap A"
 
 
         ));
@@ -60,7 +62,7 @@ public class GameUtils {
                 "cevap B",
                 "cevap C",
                 "cevap D",
-                1
+                "cevap C"
 
 
         ));
@@ -70,7 +72,7 @@ public class GameUtils {
                 "cevap B",
                 "cevap C",
                 "cevap D",
-                1
+                "cevap D"
 
 
         ));
@@ -80,7 +82,7 @@ public class GameUtils {
                 "cevap B",
                 "cevap C",
                 "cevap D",
-                1
+                "cevap A"
 
 
         ));
@@ -90,7 +92,7 @@ public class GameUtils {
                 "cevap B",
                 "cevap C",
                 "cevap D",
-                1
+                "cevap C"
 
 
         ));
@@ -100,7 +102,7 @@ public class GameUtils {
                 "cevap B",
                 "cevap C",
                 "cevap D",
-                1
+                "cevap A"
 
 
         ));
@@ -110,7 +112,7 @@ public class GameUtils {
                 "cevap B",
                 "cevap C",
                 "cevap D",
-                1
+                "cevap D"
 
 
         ));
@@ -128,7 +130,7 @@ public class GameUtils {
 
                 "cevap C",
                 "cevap D",
-                1
+                "cevap B"
 
 
         ));
@@ -138,7 +140,7 @@ public class GameUtils {
                 "cevap B",
                 "cevap C",
                 "cevap D",
-                1
+                "cevap A"
 
 
         ));
@@ -148,7 +150,7 @@ public class GameUtils {
                 "cevap B",
                 "cevap C",
                 "cevap D",
-                1
+                "cevap D"
 
 
         ));
@@ -158,7 +160,7 @@ public class GameUtils {
                 "cevap B",
                 "cevap C",
                 "cevap D",
-                1
+                "cevap B"
 
 
         ));
@@ -168,7 +170,7 @@ public class GameUtils {
                 "cevap B",
                 "cevap C",
                 "cevap D",
-                1
+                "cevap A"
 
 
         ));
@@ -178,7 +180,7 @@ public class GameUtils {
                 "cevap B",
                 "cevap C",
                 "cevap D",
-                1
+                "cevap C"
 
 
         ));
@@ -188,7 +190,7 @@ public class GameUtils {
                 "cevap B",
                 "cevap C",
                 "cevap D",
-                1
+                "cevap D"
 
 
         ));
@@ -198,7 +200,7 @@ public class GameUtils {
                 "cevap B",
                 "cevap C",
                 "cevap D",
-                1
+                "cevap B"
 
 
         ));
@@ -208,7 +210,7 @@ public class GameUtils {
                 "cevap B",
                 "cevap C",
                 "cevap D",
-                1
+                "cevap D"
 
 
         ));
@@ -218,11 +220,21 @@ public class GameUtils {
                 "cevap B",
                 "cevap C",
                 "cevap D",
-                1
+                "cevap A"
 
 
         ));
 
     }
+
+    public static void buttonPaint(Activity activity, Button button , int color){
+        button.setBackgroundColor(activity.getResources().getColor(color));
+
+    }
+
+
+
+
+
 
 }

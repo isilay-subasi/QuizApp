@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import com.isilsubasi.quizapp.R;
 import com.isilsubasi.quizapp.model.QuestionModel;
+import com.isilsubasi.quizapp.util.ActivityUtils;
 import com.isilsubasi.quizapp.util.Constans;
 import com.isilsubasi.quizapp.util.GameUtils;
 
@@ -17,10 +18,11 @@ import java.util.ArrayList;
 public class GameActivity extends AppCompatActivity {
 
     TextView txtGameBar,txtQuestionNumber,txtScore,txtQuestion;
-    Button  btnAnswerOne,btnAnswerTwo,btnAnswerThree,btnAnswerFour;
+    Button btnAnswer1, btnAnswer2, btnAnswer3, btnAnswer4;
     CardView cardGameBar;
-    String gameBarCategoryName;
-    int counter=0,score=100 , questionLength , answerIndex;
+    String gameBarCategoryName , answerString;
+    int counter=0,score=100 , questionLength;
+    ArrayList<String> buttonList;
 
 
     @Override
@@ -40,13 +42,13 @@ public class GameActivity extends AppCompatActivity {
         txtQuestionNumber=findViewById(R.id.tv_question_number);
         txtScore=findViewById(R.id.tv_question_score);
         txtQuestion=findViewById(R.id.tv_question);
-        btnAnswerOne=findViewById(R.id.btn_option_one);
-        btnAnswerTwo=findViewById(R.id.btn_option_two);
-        btnAnswerThree=findViewById(R.id.btn_option_three);
-        btnAnswerFour=findViewById(R.id.btn_option_four);
+        btnAnswer1 =findViewById(R.id.btn_option_one);
+        btnAnswer2 =findViewById(R.id.btn_option_two);
+        btnAnswer3 =findViewById(R.id.btn_option_three);
+        btnAnswer4 =findViewById(R.id.btn_option_four);
         cardGameBar=findViewById(R.id.cardGameBar);
         setCardGameBar();
-        updateQuestionsAndAnswers();
+        setGameStart();
         setClickListeners();
     }
 
@@ -57,7 +59,7 @@ public class GameActivity extends AppCompatActivity {
         cardGameBar.setCardBackgroundColor(gameBarComingColorValue);
     }
 
-    private void updateQuestionsAndAnswers(){
+    private void setGameStart(){
             if (gameBarCategoryName.equals(Constans.ANDROID)){
                   updateAndroidQuestions();
             }else{
@@ -73,11 +75,12 @@ public class GameActivity extends AppCompatActivity {
         txtQuestionNumber.setText(counter+"/"+questionLength);
         txtScore.setText(""+score);
         txtQuestion.setText(androidQuestionsList.get(counter).getQuestion());
-        btnAnswerOne.setText(androidQuestionsList.get(counter).getAnswer1());
-        btnAnswerTwo.setText(androidQuestionsList.get(counter).getAnswer2());
-        btnAnswerThree.setText(androidQuestionsList.get(counter).getAnswer3());
-        btnAnswerFour.setText(androidQuestionsList.get(counter).getAnswer4());
-        answerIndex=androidQuestionsList.get(counter).getCorrectAnswerIndex();
+        btnAnswer1.setText(androidQuestionsList.get(counter).getAnswer1());
+        btnAnswer2.setText(androidQuestionsList.get(counter).getAnswer2());
+        btnAnswer3.setText(androidQuestionsList.get(counter).getAnswer3());
+        btnAnswer4.setText(androidQuestionsList.get(counter).getAnswer4());
+        answerString=androidQuestionsList.get(counter).getCorrectAnswer();
+
 
 
     }
@@ -85,32 +88,32 @@ public class GameActivity extends AppCompatActivity {
 
     private void setClickListeners(){
 
-        btnAnswerOne.setOnClickListener(new View.OnClickListener() {
+        btnAnswer1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                checkAnswer(btnAnswerOne);
+                checkAnswer(btnAnswer1);
             }
         });
 
 
-        btnAnswerTwo.setOnClickListener(new View.OnClickListener() {
+        btnAnswer2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                checkAnswer(btnAnswerTwo);
+                checkAnswer(btnAnswer2);
             }
         });
 
-        btnAnswerThree.setOnClickListener(new View.OnClickListener() {
+        btnAnswer3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                checkAnswer(btnAnswerThree);
+                checkAnswer(btnAnswer3);
             }
         });
 
-        btnAnswerFour.setOnClickListener(new View.OnClickListener() {
+        btnAnswer4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                checkAnswer(btnAnswerFour);
+                checkAnswer(btnAnswer4);
             }
         });
 
@@ -120,11 +123,23 @@ public class GameActivity extends AppCompatActivity {
 
     private void checkAnswer(Button btnAnswer){
 
-
-
+        if (btnAnswer.getText() == answerString){
+            GameUtils.buttonPaint(GameActivity.this,btnAnswer,R.color.light_green);
+            //1 saniyelik timer
+        }else{
+            GameUtils.buttonPaint(GameActivity.this,btnAnswer,R.color.red);
+            ActivityUtils.openGameOverActivity(GameActivity.this,GameOverActivity.class);
+        }
 
 
     }
+
+
+
+
+
+
+
 
 
 

@@ -24,5 +24,10 @@ public class ActivityUtils {
         activity.startActivity(intent);
     }
 
+    public static void openGameOverActivity(Activity activity , Class<?> cls){
+        Intent intent=new Intent(activity, cls);
+        activity.startActivity(intent);
+    }
+
 
 }

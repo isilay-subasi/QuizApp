@@ -7,15 +7,15 @@ public class QuestionModel {
     String answer2;
     String answer3;
     String answer4;
-    int correctAnswerIndex;
+    String correctAnswer;
 
-    public QuestionModel(String question, String answer1, String answer2, String answer3, String answer4, int correctAnswerIndex) {
+    public QuestionModel(String question, String answer1, String answer2, String answer3, String answer4, String correctAnswer) {
         this.question = question;
         this.answer1 = answer1;
         this.answer2 = answer2;
         this.answer3 = answer3;
         this.answer4 = answer4;
-        this.correctAnswerIndex = correctAnswerIndex-1;
+        this.correctAnswer = correctAnswer;
     }
 
     public String getQuestion() {
@@ -38,8 +38,8 @@ public class QuestionModel {
         return answer4;
     }
 
-    public int getCorrectAnswerIndex() {
-        return correctAnswerIndex;
+    public String getCorrectAnswer() {
+        return correctAnswer;
     }
 
 
