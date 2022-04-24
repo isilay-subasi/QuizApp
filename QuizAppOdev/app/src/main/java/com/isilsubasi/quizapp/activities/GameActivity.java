@@ -1,11 +1,11 @@
 package com.isilsubasi.quizapp.activities;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -14,9 +14,9 @@ import androidx.cardview.widget.CardView;
 import com.isilsubasi.quizapp.R;
 import com.isilsubasi.quizapp.model.QuestionModel;
 import com.isilsubasi.quizapp.util.ActivityUtils;
-import com.isilsubasi.quizapp.util.AlertUtils;
 import com.isilsubasi.quizapp.util.Constans;
 import com.isilsubasi.quizapp.util.GameUtils;
+import com.isilsubasi.quizapp.util.PrefUtil;
 
 import java.util.ArrayList;
 
@@ -26,8 +26,8 @@ public class GameActivity extends AppCompatActivity {
     Button btnAnswer1, btnAnswer2, btnAnswer3, btnAnswer4;
     CardView cardGameBar;
     String gameBarCategoryName , answerString;
-    int counter=0,score=0 , questionLength;
-
+    int counter=1,score=0 , questionLength;
+    boolean isCorrect=false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,14 +78,12 @@ public class GameActivity extends AppCompatActivity {
 
         txtQuestionNumber.setText(counter+"/"+questionLength);
         txtScore.setText(""+score);
-        txtQuestion.setText(androidQuestionsList.get(counter).getQuestion());
-        btnAnswer1.setText(androidQuestionsList.get(counter).getAnswer1());
-        btnAnswer2.setText(androidQuestionsList.get(counter).getAnswer2());
-        btnAnswer3.setText(androidQuestionsList.get(counter).getAnswer3());
-        btnAnswer4.setText(androidQuestionsList.get(counter).getAnswer4());
-        answerString=androidQuestionsList.get(counter).getCorrectAnswer();
-
-
+        txtQuestion.setText(androidQuestionsList.get(counter-1).getQuestion());
+        btnAnswer1.setText(androidQuestionsList.get(counter-1).getAnswer1());
+        btnAnswer2.setText(androidQuestionsList.get(counter-1).getAnswer2());
+        btnAnswer3.setText(androidQuestionsList.get(counter-1).getAnswer3());
+        btnAnswer4.setText(androidQuestionsList.get(counter-1).getAnswer4());
+        answerString=androidQuestionsList.get(counter-1).getCorrectAnswer();
 
     }
 
@@ -142,26 +140,36 @@ public class GameActivity extends AppCompatActivity {
     private void correctAnswer(Button btnAnswer){
         counter++;
         score=score+10;
+        isCorrect=true;
         GameUtils.buttonPaint(GameActivity.this,btnAnswer,R.color.light_green);
-        dialogOpeningTimer(btnAnswer);
+        checkAnswerTimer(btnAnswer,counter,score);
 
     }
 
     private void falseAnswer(Button btnAnswer){
+        isCorrect=false;
         GameUtils.buttonPaint(GameActivity.this,btnAnswer,R.color.red);
-        ActivityUtils.openGameOverActivity(GameActivity.this,GameOverActivity.class);
+        checkAnswerTimer(btnAnswer,counter,score);
     }
 
 
 
- private void dialogOpeningTimer(Button btnAnswer){
+ private void checkAnswerTimer(Button btnAnswer,int questionNumber,int score){
      new CountDownTimer(Constans.DIALOG_OPENING_TIMER,Constans.INVERTAL_MILIS) {
          @Override
          public void onTick(long l) { }
 
          @Override
          public void onFinish() {
-             showContinueDialog(btnAnswer);
+             if (isCorrect){
+                 showContinueDialog(btnAnswer,counter,score);
+             }else{
+                 PrefUtil.setIntPref(GameActivity.this,Constans.QUESTION_NUMBER_PARAMETER,counter);
+                 PrefUtil.setIntPref(GameActivity.this,Constans.SCORE_PARAMETER,score);
+                 ActivityUtils.openScreen(GameActivity.this,GameOverActivity.class);
+             }
+
+
          }
      }.start();
 
@@ -170,10 +178,10 @@ public class GameActivity extends AppCompatActivity {
 
  }
 
-    public  void showContinueDialog(Button btnAnswer){
+    public  void showContinueDialog(Button btnAnswer,int counter,int score){
         AlertDialog.Builder builder = new AlertDialog.Builder(GameActivity.this);
         builder.setTitle(getString(R.string.alert_title_continue));
-        builder.setNegativeButton(getString(R.string.alert_cikis_button),
+        builder.setNegativeButton(getString(R.string.exit_button),
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -185,9 +193,18 @@ public class GameActivity extends AppCompatActivity {
                 DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int i) {
-                        dialog.dismiss();
-                        GameUtils.buttonDefaultPaint(GameActivity.this,btnAnswer,R.color.light_pink_color);
-                        updateAndroidQuestions();
+
+                        if (isLastQuestion(counter)){
+                            PrefUtil.setIntPref(GameActivity.this,Constans.QUESTION_NUMBER_PARAMETER,counter-1);
+                            PrefUtil.setIntPref(GameActivity.this,Constans.SCORE_PARAMETER,score);
+                            ActivityUtils.openScreen(GameActivity.this,GameEndActivity.class);
+
+                        }else {
+                            dialog.dismiss();
+                            GameUtils.buttonDefaultPaint(GameActivity.this,btnAnswer,R.color.light_pink_color);
+                            updateAndroidQuestions();
+                        }
+
 
                     }
                 });
@@ -196,10 +213,13 @@ public class GameActivity extends AppCompatActivity {
 
     }
 
-
-
-
-
+    private boolean isLastQuestion(int counter){
+        Log.e("isil-log", String.valueOf(counter));
+        if (counter==questionLength+1){
+            return true;
+        }
+        return false;
+    }
 
 
 

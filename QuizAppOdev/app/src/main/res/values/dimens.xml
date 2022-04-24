@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="margin_size">10dp</dimen>
+    <dimen name="margin_start_size">180dp</dimen>
     <dimen name="padding_size">14dp</dimen>
     <dimen name="activity_xxsmall_size">25dp</dimen>
     <dimen name="activity_xsmall_size">50dp</dimen>

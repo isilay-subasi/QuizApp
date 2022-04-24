@@ -24,7 +24,11 @@
     <string name="alert_negative_button">Hayır</string>
     <string name="alert_positive_button">Evet</string>
     <string name="alert_devam_button">Devam</string>
-    <string name="alert_cikis_button">Çıkış</string>
+    <string name="exit_button">Çıkış</string>
+
+    <string name="game_over_text">Oyun Bitti</string>
+    <string name="game_end_text">Tebrikler</string>
+    <string name="back_to_homepage">Anasayfaya Dön</string>
 
 
 </resources>

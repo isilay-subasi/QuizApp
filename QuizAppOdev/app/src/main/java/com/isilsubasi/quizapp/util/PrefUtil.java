@@ -21,4 +21,15 @@ public class PrefUtil {
         return getPref(context).getString(key,"..");
 
     }
+
+    public static void setIntPref(Context context, String key, int deger){
+        getPref(context).edit().putInt(key,deger).apply();
+
+    }
+
+    public static int getIntPref(Context context,String key){
+        return getPref(context).getInt(key,0);
+
+    }
+
 }

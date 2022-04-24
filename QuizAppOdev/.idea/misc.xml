@@ -11,6 +11,8 @@
         <entry key="..\:/ANDROID_DEVELOPMENT/QuizAppOdev/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1484375" />
         <entry key="..\:/Users/isil/Desktop/QuizApp/QuizAppOdev/app/src/main/res/layout/activity_category.xml" value="0.22083333333333333" />
         <entry key="..\:/Users/isil/Desktop/QuizApp/QuizAppOdev/app/src/main/res/layout/activity_game.xml" value="0.256140350877193" />
+        <entry key="..\:/Users/isil/Desktop/QuizApp/QuizAppOdev/app/src/main/res/layout/activity_game_end.xml" value="0.19166666666666668" />
+        <entry key="..\:/Users/isil/Desktop/QuizApp/QuizAppOdev/app/src/main/res/layout/activity_game_over.xml" value="0.2140625" />
       </map>
     </option>
   </component>
