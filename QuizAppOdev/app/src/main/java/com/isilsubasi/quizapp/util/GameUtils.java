@@ -47,47 +47,47 @@ public class GameUtils {
 
         ));
         androidQuestionsList.add(new QuestionModel(
-                "Soru4",
-                "cevap A",
-                "cevap B",
-                "cevap C",
-                "cevap D",
-                "cevap A"
+                "What does the word -tournament- mean?",
+                "reddetmek",
+                "tercih etmek",
+                "komedi",
+                "turnuva",
+                "turnuva"
 
 
         ));
         androidQuestionsList.add(new QuestionModel(
-                "Soru5",
-                "cevap A",
-                "cevap B",
-                "cevap C",
-                "cevap D",
-                "cevap C"
+                "What does the word -hometown- mean?",
+                "sipariş almak",
+                "sır",
+                "memleket",
+                "görev",
+                "memleket"
 
 
         ));
         androidQuestionsList.add(new QuestionModel(
-                "Soru6",
-                "cevap A",
-                "cevap B",
-                "cevap C",
-                "cevap D",
-                "cevap D"
+                "The terrorist organisation is believed to ..... a threat to CJS security.",
+                "exhaust",
+                "act",
+                "pose",
+                "dispel",
+                "pose"
 
 
         ));
         androidQuestionsList.add(new QuestionModel(
-                "Soru7",
-                "cevap A",
-                "cevap B",
-                "cevap C",
-                "cevap D",
-                "cevap A"
+                "I'm enjoying this novel more and more as the plot ......... .",
+                "confirms",
+                "winds",
+                "weaves",
+                "unfolds",
+                "unfolds"
 
 
         ));
         androidQuestionsList.add(new QuestionModel(
-                "Soru8",
+                "At the age of 40, Susan.......quit her job and started her own training business. ",
                 "cevap A",
                 "cevap B",
                 "cevap C",

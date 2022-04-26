@@ -20,18 +20,16 @@ public class ActivityUtils {
 
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
+
+
     public static void openActivityWithParams(Activity activity, Class<?> cls, HashMap<String,String> extras){
         Intent intent=new Intent(activity,cls);
-        extras.forEach(
-                intent::putExtra
-        );
+        for(HashMap.Entry<String, String> item : extras.entrySet()) {
+            intent.putExtra(item.getKey(),item.getValue());
+        }
         activity.startActivity(intent);
         activity.finish();
-
     }
-
-
 
 
 
