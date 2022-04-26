@@ -53,7 +53,7 @@ public class LoginActivity extends AppCompatActivity {
         Toast.makeText(getApplicationContext(),getString(R.string.toast_not_empty), Toast.LENGTH_SHORT).show();
     }else{
         PrefUtil.setStringPref(getApplicationContext(), Constans.PREF_OYUNCU_ADI_PARAMETRESİ,userName);
-        ActivityUtils.openScreen(this,CategoryActivity.class);
+        ActivityUtils.openScreen(this,CategoryActivity.class,true);
     }
 
     }

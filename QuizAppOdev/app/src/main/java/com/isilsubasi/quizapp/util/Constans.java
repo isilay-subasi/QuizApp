@@ -15,6 +15,7 @@ public class Constans {
 
     public static final String QUESTION_NUMBER_PARAMETER = "QUESTION_NUMBER_PARAMETER";
     public static final String SCORE_PARAMETER = "SCORE_PARAMETER";
+    public static final String MOVED_SCREEN_PARAMETER = "MOVED_SCREEN_PARAMETER";
 
 
 

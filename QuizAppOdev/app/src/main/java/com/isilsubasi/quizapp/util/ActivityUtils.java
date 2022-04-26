@@ -2,56 +2,37 @@ package com.isilsubasi.quizapp.util;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
+import android.os.Build;
 
-import androidx.cardview.widget.CardView;
+import androidx.annotation.RequiresApi;
 
-import com.isilsubasi.quizapp.activities.CategoryActivity;
-import com.isilsubasi.quizapp.activities.GameEndActivity;
-import com.isilsubasi.quizapp.activities.GameOverActivity;
+import java.util.HashMap;
 
 
 public class ActivityUtils {
 
-    public static void openScreen(Activity activity, Class<?> cls){
+    public static void openScreen(Activity activity, Class<?> cls,boolean isFinish){
         Intent intent=new Intent(activity, cls);
         activity.startActivity(intent);
-        activity.finish();
-
+        if (isFinish){
+            activity.finish();
+        }
 
     }
 
-    public static void openGameActivity(Activity activity, Class<?> cls, TextView txtView , CardView cardView){
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public static void openActivityWithParams(Activity activity, Class<?> cls, HashMap<String,String> extras){
         Intent intent=new Intent(activity,cls);
-        intent.putExtra(Constans.GAME_BAR_PARAMETRESI, txtView.getText().toString());
-        intent.putExtra(Constans.GAME_BAR_COLOR,cardView.getCardBackgroundColor().getDefaultColor());
+        extras.forEach(
+                intent::putExtra
+        );
         activity.startActivity(intent);
         activity.finish();
-    }
-
-
-    public static void setGameOverAndGameEndActivity(Activity activity, Button btnBackToHomePage,Button btnExit ,TextView txtQuestionNumber,TextView txtScore){
-        txtQuestionNumber.setText(String.valueOf(PrefUtil.getIntPref(activity, Constans.QUESTION_NUMBER_PARAMETER)));
-        txtScore.setText(String.valueOf(PrefUtil.getIntPref(activity,Constans.SCORE_PARAMETER)));
-        btnBackToHomePage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ActivityUtils.openScreen(activity, CategoryActivity.class);
-            }
-        });
-
-        btnExit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-               activity.finish();
-            }
-        });
-
-
 
     }
+
+
+
 
 
 

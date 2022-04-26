@@ -35,7 +35,7 @@ public class SplashActivity extends AppCompatActivity {
 
             @Override
             public void onFinish() {
-                ActivityUtils.openScreen(SplashActivity.this,LoginActivity.class);
+                ActivityUtils.openScreen(SplashActivity.this,LoginActivity.class,true);
             }
         }.start();
      }

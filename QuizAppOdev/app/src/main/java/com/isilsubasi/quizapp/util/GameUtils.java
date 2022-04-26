@@ -17,32 +17,32 @@ public class GameUtils {
 
         ArrayList<QuestionModel> androidQuestionsList=new ArrayList<QuestionModel>();
         androidQuestionsList.add(new QuestionModel(
-                "Soru1",
-                "cevap A",
-                "cevap B",
-                "cevap C",
-                "cevap D",
-                "cevap B"
+                "The liver receives a quarter of its blood ---- from the hepatic artery.",
+                "substance",
+                "condition",
+                "supply",
+                "connection",
+                "supply"
 
 
         ));
         androidQuestionsList.add(new QuestionModel(
-                "Soru2",
-                "cevap A",
-                "cevap B",
-                "cevap C",
-                "cevap D",
-                "cevap C"
+                "People vary ---- in their individual dietary requirements.",
+                "eventually",
+                "remotely",
+                "exactly",
+                "tremendously",
+                "tremendously"
 
 
         ));
         androidQuestionsList.add(new QuestionModel(
-                "Soru3",
-                "cevap A",
-                "cevap B",
-                "cevap C",
-                "cevap D",
-                "cevap D"
+                "Dried rose petals in a bowl with some rose oil can give a room a lovely",
+                "attitude",
+                "view",
+                "fragrance",
+                "taste",
+                "fragrance"
 
 
         ));

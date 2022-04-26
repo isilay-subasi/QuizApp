@@ -3,22 +3,26 @@ package com.isilsubasi.quizapp.activities;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import com.isilsubasi.quizapp.R;
 import com.isilsubasi.quizapp.model.QuestionModel;
 import com.isilsubasi.quizapp.util.ActivityUtils;
 import com.isilsubasi.quizapp.util.Constans;
+import com.isilsubasi.quizapp.util.Screens;
 import com.isilsubasi.quizapp.util.GameUtils;
 import com.isilsubasi.quizapp.util.PrefUtil;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class GameActivity extends AppCompatActivity {
 
@@ -58,9 +62,8 @@ public class GameActivity extends AppCompatActivity {
 
     private void setCardGameBar(){
         gameBarCategoryName=getIntent().getExtras().getString(Constans.GAME_BAR_PARAMETRESI);
-        int gameBarComingColorValue=getIntent().getExtras().getInt(Constans.GAME_BAR_COLOR);
         txtGameBar.setText(gameBarCategoryName);
-        cardGameBar.setCardBackgroundColor(gameBarComingColorValue);
+        cardGameBar.setCardBackgroundColor(Integer.parseInt(getIntent().getExtras().getString(Constans.GAME_BAR_COLOR)));
     }
 
     private void setGameStart(){
@@ -159,14 +162,24 @@ public class GameActivity extends AppCompatActivity {
          @Override
          public void onTick(long l) { }
 
+         @RequiresApi(api = Build.VERSION_CODES.N)
          @Override
          public void onFinish() {
              if (isCorrect){
                  showContinueDialog(btnAnswer,counter,score);
              }else{
-                 PrefUtil.setIntPref(GameActivity.this,Constans.QUESTION_NUMBER_PARAMETER,counter);
-                 PrefUtil.setIntPref(GameActivity.this,Constans.SCORE_PARAMETER,score);
-                 ActivityUtils.openScreen(GameActivity.this,GameOverActivity.class);
+
+                 HashMap<String,String> HashMap=new HashMap<>();
+                 HashMap.put(Constans.MOVED_SCREEN_PARAMETER, Screens.WRONG.name());
+                 HashMap.put(Constans.QUESTION_NUMBER_PARAMETER, String.valueOf(counter));
+                 HashMap.put(Constans.SCORE_PARAMETER, String.valueOf(score));
+                 ActivityUtils.openActivityWithParams(GameActivity.this,GameFinishActivity.class,HashMap);
+
+
+                // PrefUtil.setIntPref(GameActivity.this,Constans.QUESTION_NUMBER_PARAMETER,counter);
+                // PrefUtil.setIntPref(GameActivity.this,Constans.SCORE_PARAMETER,score);
+                // ActivityUtils.openScreen(GameActivity.this,GameOverActivity.class,false);
+
              }
 
 
@@ -191,13 +204,16 @@ public class GameActivity extends AppCompatActivity {
         );
         builder.setPositiveButton(getString(R.string.alert_devam_button), new
                 DialogInterface.OnClickListener() {
+                    @RequiresApi(api = Build.VERSION_CODES.N)
                     @Override
                     public void onClick(DialogInterface dialog, int i) {
 
                         if (isLastQuestion(counter)){
-                            PrefUtil.setIntPref(GameActivity.this,Constans.QUESTION_NUMBER_PARAMETER,counter-1);
-                            PrefUtil.setIntPref(GameActivity.this,Constans.SCORE_PARAMETER,score);
-                            ActivityUtils.openScreen(GameActivity.this,GameEndActivity.class);
+                            HashMap<String,String> HashMap=new HashMap<>();
+                            HashMap.put(Constans.MOVED_SCREEN_PARAMETER, Screens.WİNNER.name());
+                            HashMap.put(Constans.QUESTION_NUMBER_PARAMETER, String.valueOf(counter));
+                            HashMap.put(Constans.SCORE_PARAMETER, String.valueOf(score));
+                            ActivityUtils.openActivityWithParams(GameActivity.this,GameFinishActivity.class,HashMap);
 
                         }else {
                             dialog.dismiss();
@@ -214,7 +230,6 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private boolean isLastQuestion(int counter){
-        Log.e("isil-log", String.valueOf(counter));
         if (counter==questionLength+1){
             return true;
         }

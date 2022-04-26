@@ -11,10 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity
-            android:name=".activities.GameEndActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activities.GameOverActivity"
+            android:name=".activities.GameFinishActivity"
             android:exported="false" />
         <activity
             android:name=".activities.GameActivity"

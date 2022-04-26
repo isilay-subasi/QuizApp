@@ -5,24 +5,26 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".activities.GameEndActivity">
+    tools:context=".activities.GameFinishActivity">
 
     <ImageView
+        android:id="@+id/imageViewEmoji"
         android:layout_marginTop="@dimen/activity_small_size"
         android:layout_gravity="center"
-        android:src="@drawable/happy_emoji"
+        android:src="@drawable/sad_emoji"
         android:layout_width="@dimen/activity_small_size"
         android:layout_height="@dimen/activity_small_size">
 
     </ImageView>
 
     <TextView
+        android:id="@+id/txtFinishText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_start_size"
         android:layout_marginTop="@dimen/margin_size"
         android:fontFamily="sans-serif-thin"
-        android:text="@string/game_end_text"
+        android:text="@string/game_over_text"
         android:textColor="@color/black"
         android:textStyle="bold">
 
