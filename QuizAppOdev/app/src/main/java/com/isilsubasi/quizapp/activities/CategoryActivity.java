@@ -4,9 +4,7 @@ package com.isilsubasi.quizapp.activities;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.content.Intent;
+
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -42,7 +40,7 @@ private void initUI(){
     cardAndroid=findViewById(R.id.cardAndroid);
     cardJava=findViewById(R.id.cardJava);
     cardExit =findViewById(R.id.cardCikis);
-    txtUserName.setText(PrefUtil.getStringPref(getApplicationContext(), Constans.PREF_OYUNCU_ADI_PARAMETRESİ));
+    txtUserName.setText(PrefUtil.getStringPref(getApplicationContext(), Constans.PREF_USER_NAME_PARAMETER));
     setClickListeners();
 
 }
@@ -54,7 +52,7 @@ private void setClickListeners(){
         @RequiresApi(api = Build.VERSION_CODES.N)
         @Override
         public void onClick(View view) {
-            HashMap.put(Constans.GAME_BAR_PARAMETRESI,txtAndroid.getText().toString());
+            HashMap.put(Constans.GAME_BAR_PARAMETER,txtAndroid.getText().toString());
             HashMap.put(Constans.GAME_BAR_COLOR, String.valueOf(cardAndroid.getCardBackgroundColor().getDefaultColor()));
             ActivityUtils.openActivityWithParams(CategoryActivity.this,GameActivity.class, HashMap);
         }
@@ -65,7 +63,7 @@ private void setClickListeners(){
         @RequiresApi(api = Build.VERSION_CODES.N)
         @Override
         public void onClick(View view) {
-            HashMap.put(Constans.GAME_BAR_PARAMETRESI,txtJava.getText().toString());
+            HashMap.put(Constans.GAME_BAR_PARAMETER,txtJava.getText().toString());
             HashMap.put(Constans.GAME_BAR_COLOR, String.valueOf(cardJava.getCardBackgroundColor().getDefaultColor()));
             ActivityUtils.openActivityWithParams(CategoryActivity.this,GameActivity.class, HashMap);
         }

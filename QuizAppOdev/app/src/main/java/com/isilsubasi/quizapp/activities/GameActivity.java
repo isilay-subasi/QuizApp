@@ -29,6 +29,7 @@ public class GameActivity extends AppCompatActivity {
     Button btnAnswer1, btnAnswer2, btnAnswer3, btnAnswer4;
     CardView cardGameBar;
     String gameBarCategoryName , answerString;
+    HashMap<String,String> HashMap=new HashMap<>();
     int counter=1,score=0 , questionLength;
     boolean isCorrect=false;
 
@@ -57,7 +58,7 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private void setCardGameBar(){
-        gameBarCategoryName=getIntent().getExtras().getString(Constans.GAME_BAR_PARAMETRESI);
+        gameBarCategoryName=getIntent().getExtras().getString(Constans.GAME_BAR_PARAMETER);
         txtGameBar.setText(gameBarCategoryName);
         cardGameBar.setCardBackgroundColor(Integer.parseInt(getIntent().getExtras().getString(Constans.GAME_BAR_COLOR)));
     }
@@ -154,11 +155,7 @@ public class GameActivity extends AppCompatActivity {
              if (isCorrect){
                  showContinueDialog(btnAnswer);
              }else{
-                 HashMap<String,String> HashMap=new HashMap<>();
-                 HashMap.put(Constans.MOVED_SCREEN_PARAMETER, Screens.WRONG.name());
-                 HashMap.put(Constans.QUESTION_NUMBER_PARAMETER, String.valueOf(counter));
-                 HashMap.put(Constans.SCORE_PARAMETER, String.valueOf(score));
-                 HashMap.put(Constans.QUESTION_LENGTH_PARAMETER, String.valueOf(questionLength));
+                 HashMap = createHashMap(Screens.WRONG.name());
                  ActivityUtils.openActivityWithParams(GameActivity.this,GameFinishActivity.class,HashMap);
              }
 
@@ -189,11 +186,7 @@ public class GameActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int i) {
 
                         if (isLastQuestion(counter)){
-                            HashMap<String,String> HashMap=new HashMap<>();
-                            HashMap.put(Constans.MOVED_SCREEN_PARAMETER, Screens.WİNNER.name());
-                            HashMap.put(Constans.QUESTION_NUMBER_PARAMETER, String.valueOf(counter));
-                            HashMap.put(Constans.SCORE_PARAMETER, String.valueOf(score));
-                            HashMap.put(Constans.QUESTION_LENGTH_PARAMETER, String.valueOf(questionLength));
+                            HashMap = createHashMap(Screens.WINNER.name());
                             ActivityUtils.openActivityWithParams(GameActivity.this,GameFinishActivity.class,HashMap);
 
                         }else {
@@ -218,6 +211,13 @@ public class GameActivity extends AppCompatActivity {
     }
 
 
+    private HashMap<String,String> createHashMap(String screenName){
+        HashMap.put(Constans.MOVED_SCREEN_PARAMETER, screenName);
+        HashMap.put(Constans.QUESTION_NUMBER_PARAMETER, String.valueOf(counter));
+        HashMap.put(Constans.SCORE_PARAMETER, String.valueOf(score));
+        HashMap.put(Constans.QUESTION_LENGTH_PARAMETER, String.valueOf(questionLength));
+        return HashMap;
+    }
 
 
 

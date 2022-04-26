@@ -2,8 +2,6 @@ package com.isilsubasi.quizapp.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -52,7 +50,7 @@ public class LoginActivity extends AppCompatActivity {
     if (userName.isEmpty()){
         Toast.makeText(getApplicationContext(),getString(R.string.toast_not_empty), Toast.LENGTH_SHORT).show();
     }else{
-        PrefUtil.setStringPref(getApplicationContext(), Constans.PREF_OYUNCU_ADI_PARAMETRESİ,userName);
+        PrefUtil.setStringPref(getApplicationContext(), Constans.PREF_USER_NAME_PARAMETER,userName);
         ActivityUtils.openScreen(this,CategoryActivity.class,true);
     }
 

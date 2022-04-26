@@ -49,15 +49,13 @@ public class GameFinishActivity extends AppCompatActivity implements Tasks{
         questionNumber =getIntent().getStringExtra(Constans.QUESTION_NUMBER_PARAMETER);
         score=getIntent().getStringExtra(Constans.SCORE_PARAMETER);
         questionLength=getIntent().getStringExtra(Constans.QUESTION_LENGTH_PARAMETER);
-        Log.e("isil", questionNumber);
-        Log.e("isil",score);
     }
 
 
 
     @Override
     public void getImage(String name) {
-        if (screenName.equals(Screens.WİNNER.name())){
+        if (screenName.equals(Screens.WINNER.name())){
             imageViewEmoji.setImageResource(R.drawable.happy_emoji);
         }else {
             imageViewEmoji.setImageResource(R.drawable.sad_emoji);
@@ -67,14 +65,13 @@ public class GameFinishActivity extends AppCompatActivity implements Tasks{
     @SuppressLint("SetTextI18n")
     @Override
     public void getDescription(String name) {
-        if (screenName.equals(Screens.WİNNER.name())){
+        txtScore.setText(score);
+        if (screenName.equals(Screens.WINNER.name())){
             txtFinishText.setText(getResources().getString(R.string.game_end_text));
             txtQuestionNumber.setText((Integer.parseInt(questionNumber)-1)+"/"+questionLength);
-            txtScore.setText(score);
         }else {
             txtFinishText.setText(getResources().getString(R.string.game_over_text));
             txtQuestionNumber.setText(questionNumber+"/"+questionLength);
-            txtScore.setText(score);
         }
     }
 

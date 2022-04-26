@@ -2,16 +2,11 @@ package com.isilsubasi.quizapp.util;
 
 public enum Screens {
 
-    WRONG(0),
-    WİNNER(1);
-    private final int value;
+    WRONG("WRONGSCREEN"),
+    WINNER("WİNNERSCREEN");
 
-    Screens(final int newValue) {
-        value = newValue;
+
+    Screens(String s) {
+
     }
-
-    public int getValue() { return value; }
-
-
-
 }
