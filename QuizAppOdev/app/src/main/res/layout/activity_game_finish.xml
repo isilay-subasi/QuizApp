@@ -24,6 +24,7 @@
         android:layout_marginStart="@dimen/margin_start_size"
         android:layout_marginTop="@dimen/margin_size"
         android:fontFamily="sans-serif-thin"
+        android:textSize="@dimen/text_medium_size"
         android:text="@string/game_over_text"
         android:textColor="@color/black"
         android:textStyle="bold">

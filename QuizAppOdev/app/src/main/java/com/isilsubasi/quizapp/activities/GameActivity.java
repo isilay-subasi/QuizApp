@@ -173,6 +173,7 @@ public class GameActivity extends AppCompatActivity {
                  HashMap.put(Constans.MOVED_SCREEN_PARAMETER, Screens.WRONG.name());
                  HashMap.put(Constans.QUESTION_NUMBER_PARAMETER, String.valueOf(counter));
                  HashMap.put(Constans.SCORE_PARAMETER, String.valueOf(score));
+                 HashMap.put(Constans.QUESTION_LENGTH_PARAMETER, String.valueOf(questionLength));
                  ActivityUtils.openActivityWithParams(GameActivity.this,GameFinishActivity.class,HashMap);
 
 
@@ -213,6 +214,7 @@ public class GameActivity extends AppCompatActivity {
                             HashMap.put(Constans.MOVED_SCREEN_PARAMETER, Screens.WİNNER.name());
                             HashMap.put(Constans.QUESTION_NUMBER_PARAMETER, String.valueOf(counter));
                             HashMap.put(Constans.SCORE_PARAMETER, String.valueOf(score));
+                            HashMap.put(Constans.QUESTION_LENGTH_PARAMETER, String.valueOf(questionLength));
                             ActivityUtils.openActivityWithParams(GameActivity.this,GameFinishActivity.class,HashMap);
 
                         }else {

@@ -2,7 +2,9 @@ package com.isilsubasi.quizapp.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -18,8 +20,7 @@ public class GameFinishActivity extends AppCompatActivity implements Tasks{
     ImageView imageViewEmoji;
     TextView txtFinishText,txtQuestionNumber,txtScore;
     Button btnBackToHomePage,btnExit;
-    int screenId =-1;
-    String questioNumber,score;
+    String questionNumber,score,screenName , questionLength;
 
 
     @Override
@@ -28,6 +29,9 @@ public class GameFinishActivity extends AppCompatActivity implements Tasks{
         setContentView(R.layout.activity_game_finish);
         initUI();
         receivedData();
+        getImage(screenName);
+        getDescription(screenName);
+        onButtonClick(screenName);
     }
 
 
@@ -41,37 +45,41 @@ public class GameFinishActivity extends AppCompatActivity implements Tasks{
     }
 
     public void receivedData(){
-        screenId =Integer.parseInt(getIntent().getStringExtra(Constans.MOVED_SCREEN_PARAMETER));
-        questioNumber=getIntent().getStringExtra(Constans.QUESTION_NUMBER_PARAMETER);
+        screenName =getIntent().getStringExtra(Constans.MOVED_SCREEN_PARAMETER);
+        questionNumber =getIntent().getStringExtra(Constans.QUESTION_NUMBER_PARAMETER);
         score=getIntent().getStringExtra(Constans.SCORE_PARAMETER);
+        questionLength=getIntent().getStringExtra(Constans.QUESTION_LENGTH_PARAMETER);
+        Log.e("isil", questionNumber);
+        Log.e("isil",score);
     }
 
 
 
     @Override
-    public void getImage(int id) {
-        if (screenId== Screens.WİNNER.getValue()){
+    public void getImage(String name) {
+        if (screenName.equals(Screens.WİNNER.name())){
             imageViewEmoji.setImageResource(R.drawable.happy_emoji);
         }else {
             imageViewEmoji.setImageResource(R.drawable.sad_emoji);
         }
-
-
-
-
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
-    public void getDescription(int id) {
-        if (screenId== Screens.WİNNER.getValue()){
+    public void getDescription(String name) {
+        if (screenName.equals(Screens.WİNNER.name())){
             txtFinishText.setText(getResources().getString(R.string.game_end_text));
+            txtQuestionNumber.setText((Integer.parseInt(questionNumber)-1)+"/"+questionLength);
+            txtScore.setText(score);
         }else {
             txtFinishText.setText(getResources().getString(R.string.game_over_text));
+            txtQuestionNumber.setText(questionNumber+"/"+questionLength);
+            txtScore.setText(score);
         }
     }
 
     @Override
-    public void onButtonClick(int id) {
+    public void onButtonClick(String name) {
             btnBackToHomePage.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

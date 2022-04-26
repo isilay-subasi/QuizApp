@@ -2,9 +2,9 @@ package com.isilsubasi.quizapp.activities;
 
 public interface Tasks {
 
-    void getImage(int id);
-    void getDescription(int id);
-    void onButtonClick(int id);
+    void getImage(String  name);
+    void getDescription(String name);
+    void onButtonClick(String name);
 
 
 }
