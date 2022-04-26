@@ -19,7 +19,6 @@ import com.isilsubasi.quizapp.util.ActivityUtils;
 import com.isilsubasi.quizapp.util.Constans;
 import com.isilsubasi.quizapp.util.Screens;
 import com.isilsubasi.quizapp.util.GameUtils;
-import com.isilsubasi.quizapp.util.PrefUtil;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -38,9 +37,6 @@ public class GameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
         initUI();
-
-
-
 
     }
 
@@ -132,32 +128,22 @@ public class GameActivity extends AppCompatActivity {
     private void checkAnswer(Button btnAnswer){
 
         if (btnAnswer.getText() == answerString){
-            correctAnswer(btnAnswer);
+            counter++;
+            score=score+10;
+            isCorrect=true;
+            btnAnswer.setBackgroundColor(getResources().getColor(R.color.light_green));
         }else{
-            falseAnswer(btnAnswer);
+            isCorrect=false;
+            btnAnswer.setBackgroundColor(getResources().getColor(R.color.red));
         }
+        continueDialogTimer(btnAnswer);
 
 
     }
 
-    private void correctAnswer(Button btnAnswer){
-        counter++;
-        score=score+10;
-        isCorrect=true;
-        GameUtils.buttonPaint(GameActivity.this,btnAnswer,R.color.light_green);
-        checkAnswerTimer(btnAnswer,counter,score);
-
-    }
-
-    private void falseAnswer(Button btnAnswer){
-        isCorrect=false;
-        GameUtils.buttonPaint(GameActivity.this,btnAnswer,R.color.red);
-        checkAnswerTimer(btnAnswer,counter,score);
-    }
 
 
-
- private void checkAnswerTimer(Button btnAnswer,int questionNumber,int score){
+ private void continueDialogTimer(Button btnAnswer){
      new CountDownTimer(Constans.DIALOG_OPENING_TIMER,Constans.INVERTAL_MILIS) {
          @Override
          public void onTick(long l) { }
@@ -166,21 +152,14 @@ public class GameActivity extends AppCompatActivity {
          @Override
          public void onFinish() {
              if (isCorrect){
-                 showContinueDialog(btnAnswer,counter,score);
+                 showContinueDialog(btnAnswer);
              }else{
-
                  HashMap<String,String> HashMap=new HashMap<>();
                  HashMap.put(Constans.MOVED_SCREEN_PARAMETER, Screens.WRONG.name());
                  HashMap.put(Constans.QUESTION_NUMBER_PARAMETER, String.valueOf(counter));
                  HashMap.put(Constans.SCORE_PARAMETER, String.valueOf(score));
                  HashMap.put(Constans.QUESTION_LENGTH_PARAMETER, String.valueOf(questionLength));
                  ActivityUtils.openActivityWithParams(GameActivity.this,GameFinishActivity.class,HashMap);
-
-
-                // PrefUtil.setIntPref(GameActivity.this,Constans.QUESTION_NUMBER_PARAMETER,counter);
-                // PrefUtil.setIntPref(GameActivity.this,Constans.SCORE_PARAMETER,score);
-                // ActivityUtils.openScreen(GameActivity.this,GameOverActivity.class,false);
-
              }
 
 
@@ -192,7 +171,7 @@ public class GameActivity extends AppCompatActivity {
 
  }
 
-    public  void showContinueDialog(Button btnAnswer,int counter,int score){
+    public  void showContinueDialog(Button btnAnswer){
         AlertDialog.Builder builder = new AlertDialog.Builder(GameActivity.this);
         builder.setTitle(getString(R.string.alert_title_continue));
         builder.setNegativeButton(getString(R.string.exit_button),
@@ -219,7 +198,7 @@ public class GameActivity extends AppCompatActivity {
 
                         }else {
                             dialog.dismiss();
-                            GameUtils.buttonDefaultPaint(GameActivity.this,btnAnswer,R.color.light_pink_color);
+                            btnAnswer.setBackgroundColor(getResources().getColor(R.color.light_pink_color));
                             updateAndroidQuestions();
                         }
 
