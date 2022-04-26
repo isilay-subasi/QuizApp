@@ -204,10 +204,7 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private boolean isLastQuestion(int counter){
-        if (counter==questionLength+1){
-            return true;
-        }
-        return false;
+        return counter == questionLength + 1;
     }
 
 
